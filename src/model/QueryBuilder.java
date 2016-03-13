@@ -2,13 +2,13 @@ package model;
 
 public class QueryBuilder {
 	public static void main(String[] args) {
-		String query = QueryBuilder.buildQuery("crop", new String[] {
+		String query = QueryBuilder.buildQuery("crop C INNER JOIN household H ON C.household = H.id", new String[] {
 				"house_type",
 				"tenur",
 				"croptype"
 		}, new String[]{
-				"SUM(crop_vol)",
-				"AVG(crop_vol)"
+				"SUM(crop_vol) as sumcrop",
+				"AVG(crop_vol) as avgcrop"
 		}, new String[] {
 				"wall",
 				"roof"
