@@ -1,5 +1,5 @@
 body{
-	font-family: Montserrat;
+	font-family: Montserrat, "Segoe UI", Calibri;
 	margin: 0;
 }
 
@@ -26,7 +26,7 @@ div#navFactTable button{
 	position: relative;
 	color: #000;
 	text-transform: uppercase;
-	font-family: Montserrat;
+	font-family: Montserrat, "Segoe UI", Calibri;
 	border: none;
 	border-radius: 8px 8px 0 0;
 	display: inline-block;
@@ -72,7 +72,7 @@ table#tableSliceDice input{
 button#buttonApply{
 	color: #FFF;
 	text-transform: uppercase;
-	font-family: Montserrat;
+	font-family: Montserrat, "Segoe UI", Calibri;
 	border: none;
 	border-radius: 8px;
 	margin: 15px;

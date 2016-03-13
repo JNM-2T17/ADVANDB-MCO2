@@ -1,4 +1,4 @@
-package controller;
+package web;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class TheController {
 	@RequestMapping("/")
 	public void home(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println(request.getServletPath());
 		request.getRequestDispatcher("WEB-INF/view/index.jsp").forward(request, response);
 	}
 }
