@@ -1,5 +1,5 @@
 $(document).ready(function(){
-
+	
 	var dimCount;
 	var checkDimCount = 0;
 
@@ -88,13 +88,13 @@ $(document).ready(function(){
 
 		$(".checkRollDrill").each(function(){
 			var column = $(this).val();
-
+			console.log(column + " " + $(this).attr("checked") + " #tableSliceDice tr[data-column='" + column + "'] input.checkSliceDice");
 			if($(this).attr("checked")){
 				groupBy.push(column);
 			}
-			else if($("#tableSliceDice tr[data-column=" + column + "] input.checkSliceDice").attr("checked")){
+			else if($("#tableSliceDice tr[data-column='" + column + "'] input.checkSliceDice").attr("checked")){
 				whereCols.push(column);
-				whereVals.push($("#tableSliceDice tr[data-column=" + column + "] input.inputSliceDice").val());
+				whereVals.push($("#tableSliceDice tr[data-column='" + column + "'] input.inputSliceDice").val());
 			}
 		});
 
