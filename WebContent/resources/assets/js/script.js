@@ -84,26 +84,51 @@ $(document).ready(function(){
 	$("#buttonApply").click(function(){
 		var groupBy = [];
 		var whereCols = [];
+		var whereRange = [];
 		var whereVals = [];
+		var error = false;
+
+		$("#errorMessage").remove();
 
 		$(".checkRollDrill").each(function(){
-			var column = $(this).val();
+			if(error == false){
+				var column = $(this).val();
 
-			if($(this).attr("checked")){
-				groupBy.push(column);
-			}
-			else if($("#tableSliceDice tr[data-column=" + column + "] input.checkSliceDice").attr("checked")){
-				whereCols.push(column);
-				whereVals.push($("#tableSliceDice tr[data-column=" + column + "] input.inputSliceDice").val());
+				if($(this).attr("checked")){
+					groupBy.push(column);
+				}
+				else if($("#tableSliceDice tr[data-column=" + column + "] input.checkSliceDice").attr("checked")){
+					whereCols.push(column);
+					whereVals.push($("#tableSliceDice tr[data-column=" + column + "] .inputSliceDice:first-of-type").val());
+					if(whereVals[whereVals.length - 1] == null){
+						errorMessage("Please do not leave any input blank");
+						error = true;
+					}
+					if($("#tableSliceDice tr[data-column=" + column + "] .inputSliceDice:first-of-type").hasClass("inputRange") == true){
+						whereVals.push($("#tableSliceDice tr[data-column=" + column + "] .inputSliceDice:last-of-type").val());
+						if(whereVals[whereVals.length - 1] == null){
+							errorMessage("Please do not leave any input blank");
+							error = true;
+						}
+						whereRange.push(true);
+					}
+					else{
+						whereRange.push(false);
+					}
+				}
 			}
 		});
 
-		console.log("groupBy");
-		console.log(groupBy);
-		console.log("whereCols");
-		console.log(whereCols);
-		console.log("whereVals");
-		console.log(whereVals);
+		if(error == false){
+			console.log("groupBy");
+			console.log(groupBy);
+			console.log("whereCols");
+			console.log(whereCols);
+			console.log("whereRange");
+			console.log(whereRange);
+			console.log("whereVals");
+			console.log(whereVals);
+		}
 	});
 });
 
@@ -192,4 +217,9 @@ function addListeners(){
 
 		firstDropDown.val($(this).find("option").eq(firstChosenIndex).val())
 	});
+}
+
+function errorMessage(message){
+	$("#errorMessage").remove();
+	$(".section-options").append("<div id=\"errorMessage\">" + message + "</div>");
 }
