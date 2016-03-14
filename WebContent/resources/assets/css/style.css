@@ -42,6 +42,7 @@ div#navFactTable button{
 	padding: 10px;
 	background-color: #999;
 	transition: 0.25s;
+	outline-width: 0;
 }
 
 div#navFactTable button:hover, div#navFactTable button.active{
