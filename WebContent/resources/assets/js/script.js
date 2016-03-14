@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	
+
 	var dimCount;
 	var checkDimCount = 0;
 
@@ -201,9 +201,9 @@ function addListeners(){
 		}
 	});
 
-	$(".inputSliceDice:last-of-type").change(function(){
+	$(".inputRange:last-of-type").change(function(){
 		var chosenIndex = $(this).find("option:selected").index();
-		var firstDropDown = $(this).parent().find(".inputSliceDice:first-of-type");
+		var firstDropDown = $(this).parent().find(".inputRange:first-of-type");
 
 		var firstChosenIndex = firstDropDown.find("option:selected").index();
 		if(firstChosenIndex > chosenIndex){
