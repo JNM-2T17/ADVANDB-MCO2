@@ -6,51 +6,56 @@ $(document).ready(function(){
 	var dimensions = {
 		crops : 		[
 							{
-								name   : "dimension1",
+								name   : "crops1",
 								range  : false,
 								values : ["House", "Cave", "Boat"]
 						  	},
 						  	{
-								name   : "dimension2",
+								name   : "crops2",
 								range  : true,
 								values : ["Grade 1", "Grade 2", "Grade 3", "Grade 4", "Grade 5"]
 						  	},
 						  	{
-								name   : "dimension3",
+								name   : "crops3",
 								range  : true,
 								values : ["Cookies", "Cake", "Ice Cream", "Brownies"]
 						  	}
 			   			],
 		landParcel : 	[
 							{
-								name   : "dimension1",
+								name   : "land1",
 								range  : false,
 								values : ["House", "Cave", "Boat"]
 						  	},
 						  	{
-								name   : "dimension2",
+								name   : "land2",
 								range  : true,
 								values : ["Grade 1", "Grade 2", "Grade 3", "Grade 4", "Grade 5"]
 						  	},
 						  	{
-								name   : "dimension3",
+								name   : "land3",
 								range  : false,
 								values : ["Cookies", "Cake", "Ice Cream", "Brownies"]
+						  	},
+						  	{
+								name   : "land4",
+								range  : true,
+								values : ["0.0", "1.0", "1.5", "2.0", "2.5", "3.0", "3.5", "4.0"]
 						  	}
 					   	],
 		arcdp : 		[
 							{
-								name   : "dimension1",
+								name   : "arcdp1",
 								range  : false,
 								values : ["House", "Cave", "Boat"]
 						  	},
 						  	{
-								name   : "dimension2",
+								name   : "arcdp2",
 								range  : true,
 								values : ["Grade 1", "Grade 2", "Grade 3", "Grade 4", "Grade 5"]
 						  	},
 						  	{
-								name   : "dimension3",
+								name   : "arcdp3",
 								range  : false,
 								values : ["Cookies", "Cake", "Ice Cream", "Brownies"]
 						  	}
@@ -70,7 +75,7 @@ $(document).ready(function(){
 			case "landParcel":
 				currTable = dimensions.landParcel;
 				break;
-			case "arcdp":
+			case "ARCDP":
 				currTable = dimensions.arcdp;
 		}
 		setupFactTable(currTable);
@@ -173,7 +178,6 @@ function addListeners(){
 
 	$(".inputSliceDice:last-of-type").change(function(){
 		var chosenIndex = $(this).find("option:selected").index();
-		console.log(chosenIndex);
 		var firstDropDown = $(this).parent().find(".inputSliceDice:first-of-type");
 
 		var firstChosenIndex = firstDropDown.find("option:selected").index();
