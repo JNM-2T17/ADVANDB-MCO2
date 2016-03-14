@@ -346,7 +346,7 @@ $(document).ready(function(){
 	
 	for( x in dimensions ) {
 		for( y in dimensions[x] ) {
-			if( dimensions[x][y].name === "location ") {
+			if( dimensions[x][y].name === "location") {
 				for( i = 1; i <= 3078; i++ ) {
 					dimensions[x][y].values.push(i);
 				}
