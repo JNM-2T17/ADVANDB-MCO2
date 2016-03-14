@@ -1,5 +1,5 @@
 $(document).ready(function(){
-
+	
 	var dimCount;
 	var checkDimCount = 0;
 
