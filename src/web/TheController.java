@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class TheController {
@@ -19,6 +20,7 @@ public class TheController {
 	}
 	
 	@RequestMapping("/Query")
+	@ResponseBody
 	public void query(	@RequestParam(value="table") String table,
 						@RequestParam(value="groupBy") String groupByStr,
 						@RequestParam(value="whereCols") String whereColsStr,

@@ -427,7 +427,7 @@ $(document).ready(function(){
 			console.log(whereVals);
 			$.ajax({
 				url : "Query",
-				method : "GET",
+				method : "POST",
 				data : {
 					table : fact,
 					groupBy : groupBy.join(";"),
