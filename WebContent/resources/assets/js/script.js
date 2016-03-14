@@ -355,6 +355,7 @@ $(document).ready(function(){
 	}
 	
 	var active;
+	var fact = "crops";
 
 	setupFactTable(dimensions.crops);
 
@@ -363,12 +364,15 @@ $(document).ready(function(){
 		$(this).addClass("active");
 		switch($(this).attr("data-factTable")){
 			case "crops":
+				fact = "crops";
 				active = dimensions.crops;
 				break;
 			case "landParcel":
+				fact = "landParcel";
 				active = dimensions.landParcel;
 				break;
 			case "ARCDP":
+				fact = "ARCDP";
 				active = dimensions.arcdp;
 		}
 		setupFactTable(active);
@@ -421,6 +425,20 @@ $(document).ready(function(){
 			console.log(whereRange);
 			console.log("whereVals");
 			console.log(whereVals);
+			$.ajax({
+				url : "Query",
+				method : "GET",
+				data : {
+					table : fact,
+					groupBy : groupBy.join(";"),
+					whereCols : whereCols.join(";"),
+					whereRange : whereRange.join(";"),
+					whereVals : whereVals.join(";")
+				},
+				success : function(a) {
+					alert(a);
+				}
+			});
 		}
 	});
 });
@@ -548,7 +566,7 @@ function addListeners(){
 
 		firstDropDown.html("");
 		for(var j = 0; j <= chosenIndex; j++){
-			firstDropDown.append("<option value=\"" + $(this).find("option").eq(j).val() + "\">" + $(this).find("option").eq(j).val() + "</option>\n");
+			firstDropDown.append("<option value=\"" + $(this).find("option").eq(j).val() + "\">" + $(this).find("option").eq(j).text() + "</option>\n");
 		}
 
 		firstDropDown.val($(this).find("option").eq(firstChosenIndex).val())
