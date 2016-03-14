@@ -43,6 +43,7 @@ div#navFactTable button{
 	padding: 10px;
 	background-color: #999;
 	transition: 0.25s;
+	outline-width: 0;
 }
 
 div#navFactTable button:hover, div#navFactTable button.active{
@@ -70,9 +71,20 @@ table#tableSliceDice td:first-child{
 	width: 30px;
 }
 
-table#tableSliceDice input{
+table#tableSliceDice .inputSliceDice{
 	width: 100%;
-	height: 100%;
+}
+
+table#tableSliceDice .inputSliceDice.inputRange{
+	width: 40%;
+	float: right;
+}
+
+table#tableSliceDice .choices{
+	text-align: center;
+}
+table#tableSliceDice .inputSliceDice.inputRange:first-of-type{
+	float: left;
 }
 
 button#buttonApply{
