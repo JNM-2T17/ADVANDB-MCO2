@@ -29,6 +29,7 @@ div#navFactTable{
 
 div#navFactTable button{
 	position: relative;
+	outline-width: 0;
 	color: #000;
 	text-transform: uppercase;
 	font-family: Montserrat, "Segoe UI", Calibri;
