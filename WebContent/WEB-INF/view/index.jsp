@@ -8,8 +8,8 @@
 	<head>
 		<title>ADVANDB MCO2</title>
 		<link rel="stylesheet" href="<c:url value="/resources/assets/css/style.css" />" />
-		<script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
-		<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+		<script src="<c:url value="resources/assets/js/jquery.min.js" />"></script>
+		<script src="<c:url value="resources/assets/js/jquery-migrate-1.2.1.min.js" />"></script>
 		<script src="<c:url value="/resources/assets/js/script.js" />" type="text/javascript"></script>
 	</head>
 

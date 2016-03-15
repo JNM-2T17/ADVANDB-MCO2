@@ -12,7 +12,7 @@ public class QueryBuilder {
 					from += " INNER JOIN location L ON X.location_id = L.id";
 					select += "concat(mun,',',zone,',',brgy,',',purok) AS location_id ,";
 				} else {
-					from += " INNER JOIN " + s + " ON X." + s + " = " + s + ".id";
+					from += " LEFT JOIN " + s + " ON X." + s + " = " + s + ".id";
 					select += s + ".desc AS " + s + " ,";
 				}
 				groupBy += s + ",";

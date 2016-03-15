@@ -505,6 +505,7 @@ $(document).ready(function(){
 function setupFactTable(currTable){
 	dimCount = currTable.length;
 	checkDimCount = 0;
+	$("#headerSliceDice").css("display", "block");
 
 	var string = "";
 	for(var i = 0; i < currTable.length; i++){
@@ -590,14 +591,14 @@ function setupFactTable(currTable){
 function addListeners(){
 	$(".checkRollDrill").change(function(){
 		if($(this).attr("checked")){
-			$("#tableSliceDice tr[data-column=" + $(this).val() + "]").css("display", "none");
+			$("#tableSliceDice tr[data-column='" + $(this).val() + "']").css("display", "none");
 			checkDimCount++;
 			if(dimCount == checkDimCount){
 				$("#headerSliceDice").css("display", "none");
 			}
 		}
 		else{
-			$("#tableSliceDice tr[data-column=" + $(this).val() + "]").css("display", "table-row");
+			$("#tableSliceDice tr[data-column='" + $(this).val() + "']").css("display", "table-row");
 			checkDimCount--;
 			if(dimCount - 1 == checkDimCount){
 				$("#headerSliceDice").css("display", "block");
