@@ -57,7 +57,7 @@ $(document).ready(function(){
 								          "Others (boat, cave, etc.)"]
 						  	},
 						  	{
-						  		name   : "location",
+						  		name   : "location_id",
 								display : "Location",
 								range  : false,
 								values : []
@@ -143,7 +143,7 @@ $(document).ready(function(){
 								          "Others (boat, cave, etc.)"]
 						  	},
 						  	{
-						  		name   : "location",
+						  		name   : "location_id",
 								display : "Location",
 								range  : false,
 								values : []
@@ -219,7 +219,7 @@ $(document).ready(function(){
 								          "Others (boat, cave, etc.)"]
 						  	},
 						  	{
-						  		name   : "location",
+						  		name   : "location_id",
 								display : "Location",
 								range  : false,
 								values : []
@@ -346,7 +346,7 @@ $(document).ready(function(){
 	
 	for( x in dimensions ) {
 		for( y in dimensions[x] ) {
-			if( dimensions[x][y].name === "location") {
+			if( dimensions[x][y].name === "location_id") {
 				for( i = 1; i <= 3078; i++ ) {
 					dimensions[x][y].values.push(i);
 				}
@@ -384,7 +384,8 @@ $(document).ready(function(){
 		var whereRange = [];
 		var whereVals = [];
 		var error = false;
-
+		var header = "<tr>"
+		
 		$("#errorMessage").remove();
 
 		$(".checkRollDrill").each(function(){
@@ -393,6 +394,7 @@ $(document).ready(function(){
 
 				if($(this).attr("checked")){
 					groupBy.push(column);
+					header += "<th>" + $("#" + column).text() + "</th>";
 				}
 				else if($("#tableSliceDice tr[data-column=" + column + "] input.checkSliceDice").attr("checked")){
 					whereCols.push(column);
@@ -415,7 +417,48 @@ $(document).ready(function(){
 				}
 			}
 		});
+		var aggregates;
+		var cols;
+		switch( fact ) {
+			case "crop":
+				aggregates = [
+						"totalCrop",
+						"avgCrop"
+				];
+				cols = [
+				        "Total Crop Volume",
+				        "Average Crop Volume"
+				        ];
+				break;
+			case "landParcel":
+				aggregates = [
+						"totalArea",
+						"avgArea"
+				];
+				cols = [
+				        "Total Land Area",
+				        "Average Land Area"
+				        ];
+				break;
+			case "ARCDP":
+				aggregates = [
+						"avgAge",
+						"avgGrade",
+						"avgWorkHrs"
+				];
+				cols = [
+				        "Average Age",
+				        "Average Grade",
+				        "Average Work Hours"];
+				break;
+			default:
+		}
+		
+		for( x in cols ) {
+			header += "<th>" + cols[x] + "</th>";
+		}
 
+		header += "</tr>";
 		if(error == false){
 			console.log("groupBy");
 			console.log(groupBy);
@@ -425,6 +468,7 @@ $(document).ready(function(){
 			console.log(whereRange);
 			console.log("whereVals");
 			console.log(whereVals);
+			
 			$.ajax({
 				url : "Query",
 				method : "POST",
@@ -438,6 +482,20 @@ $(document).ready(function(){
 				},
 				success : function(a) {
 					console.log(a);
+					var results = "";
+					for( x in a) {
+						results += "<tr>";
+						var res = a[x].results;
+						for( y in groupBy ) {
+							results += "<td>" + res[groupBy[y]] + "</td>";
+						}
+						for( y in aggregates ) {
+							results += "<td>" + res[aggregates[y]] + "</td>";
+						}
+						results += "</tr>";
+					}
+					console.log(header);
+					$("#tableResults").html(header + results);
 				}
 			});
 		}
@@ -450,7 +508,7 @@ function setupFactTable(currTable){
 
 	var string = "";
 	for(var i = 0; i < currTable.length; i++){
-		string += "<input class=\"checkRollDrill\" type=\"checkbox\" value=\"" + currTable[i].name + "\"> " + currTable[i].display + "<br>\n";
+		string += "<input class=\"checkRollDrill\" type=\"checkbox\" value=\"" + currTable[i].name + "\"><span id='" + currTable[i].name + "'>" + currTable[i].display + "</span><br>\n";
 	}
 	$("#optionsRD").html(string);
 

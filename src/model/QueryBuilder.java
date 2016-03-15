@@ -1,29 +1,23 @@
 package model;
 
 public class QueryBuilder {
-	public static void main(String[] args) {
-		String query = QueryBuilder.buildQuery("crop C INNER JOIN household H ON C.household = H.id", new String[] {
-				"house_type",
-				"tenur",
-				"croptype"
-		}, new String[]{
-				"SUM(crop_vol) as sumcrop",
-				"AVG(crop_vol) as avgcrop"
-		}, new String[] {
-				"wall",
-				"roof"
-		}, new boolean[] {
-				true,false
-		});
-		System.out.println(query);
-	}
-	
-	public static String buildQuery(String table,String[] dimensions,String[] aggregates, String[] selection, boolean[] isRange) {
+	public static String buildQuery(String table,String[] dimensions,String[] aggregates, String[] selection, boolean[] isRange,String[] orderBy) {
 		String select = "SELECT ";
-		String groupBy = "GROUP BY ";
-		for(String s: dimensions) {
-			select += s + ",";
-			groupBy += s + ",";
+		String groupBy = "";
+		String from = "FROM (SELECT * FROM " + table + " A INNER JOIN household H ON A.household = H.id) X";
+		if( dimensions != null && dimensions.length > 0 ) {
+			groupBy = "GROUP BY ";
+			for(String s: dimensions) {
+				if( s.equals("location_id") ) {
+					from += " INNER JOIN location L ON X.location_id = L.id";
+					select += "concat(mun,',',zone,',',brgy,',',purok) AS location_id ,";
+				} else {
+					from += " INNER JOIN " + s + " ON X." + s + " = " + s + ".id";
+					select += s + ".desc AS " + s + " ,";
+				}
+				groupBy += s + ",";
+			}
+			groupBy = groupBy.substring(0,groupBy.length() - 1);
 		}
 		
 		for( String s : aggregates ) {
@@ -31,13 +25,9 @@ public class QueryBuilder {
 		}
 		
 		select = select.substring(0,select.length() - 1);
-		groupBy = groupBy.substring(0,groupBy.length() - 1);
 		
-		String from = "FROM " + table;
-		String where = null;
-		if( selection == null ) {
-			where = "";
-		} else {
+		String where = "";
+		if( selection != null && selection.length > 0 ) {
 			where = "WHERE ";
 			for(int i = 0; i < selection.length; i++) {
 				where += selection[i];
@@ -50,6 +40,15 @@ public class QueryBuilder {
 			where = where.substring(0,where.length() - 5);
 		}
 		
-		return select + "\n" + from + "\n" + where + "\n" + groupBy;
+		String orderByStr = "";
+		if( orderBy != null && orderBy.length > 0 ) {
+			orderByStr = "ORDER BY ";
+			for(String s : orderBy) {
+				orderByStr += s + " DESC,";
+			}
+			orderByStr = orderByStr.substring(0,orderByStr.length() - 1);
+		}
+		
+		return select + "\n" + from + "\n" + where + "\n" + groupBy + "\n" + orderByStr;
 	}
 }
