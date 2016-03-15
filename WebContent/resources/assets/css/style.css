@@ -13,6 +13,10 @@ div#header{
 	color: #FFF;
 	margin: 0;
 	height: 80px;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
 }
 
 h1{
@@ -48,6 +52,10 @@ div#navFactTable button{
 
 div#navFactTable button:hover, div#navFactTable button.active{
 	background-color: #FFF;
+}
+
+div#content{
+	margin-top: 80px;
 }
 
 div.section{
