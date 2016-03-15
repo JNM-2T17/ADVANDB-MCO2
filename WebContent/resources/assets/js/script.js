@@ -355,7 +355,7 @@ $(document).ready(function(){
 	}
 	
 	var active;
-	var fact = "crops";
+	var fact = "crop";
 
 	setupFactTable(dimensions.crops);
 
@@ -364,7 +364,7 @@ $(document).ready(function(){
 		$(this).addClass("active");
 		switch($(this).attr("data-factTable")){
 			case "crops":
-				fact = "crops";
+				fact = "crop";
 				active = dimensions.crops;
 				break;
 			case "landParcel":
@@ -428,6 +428,7 @@ $(document).ready(function(){
 			$.ajax({
 				url : "Query",
 				method : "POST",
+				dataType : "json",
 				data : {
 					table : fact,
 					groupBy : groupBy.join(";"),
@@ -436,7 +437,7 @@ $(document).ready(function(){
 					whereVals : whereVals.join(";")
 				},
 				success : function(a) {
-					alert(a);
+					console.log(a);
 				}
 			});
 		}
