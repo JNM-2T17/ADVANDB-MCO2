@@ -47,7 +47,6 @@ div#navFactTable button{
 	padding: 10px;
 	background-color: #999;
 	transition: 0.25s;
-	outline-width: 0;
 }
 
 div#navFactTable button:hover, div#navFactTable button.active{
@@ -131,4 +130,8 @@ input[type='checkbox']{
 	width: 20px;
 	height: 20px;
 	margin-right: 12px;
+}
+
+button{
+	outline-width: 0;
 }
