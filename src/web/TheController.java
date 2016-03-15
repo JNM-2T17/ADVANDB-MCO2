@@ -6,7 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collection;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -39,7 +38,7 @@ public class TheController {
 						@RequestParam(value="whereRange") String whereRangeStr,
 						@RequestParam(value="whereVals") String whereValsStr,
 			HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println(table);
+//		System.out.rintln(table);
 		String[] groupBy = groupByStr.length() == 0 ? new String[0] : groupByStr.split(";");
 		String[] whereCols = whereColsStr.length() == 0 ? new String[0] : whereColsStr.split(";");
 		String[] whereRangeS = whereRangeStr.length() == 0 ? new String[0] : whereRangeStr.split(";");
@@ -64,22 +63,22 @@ public class TheController {
 		switch(table) {
 			case "crop":
 				aggregates = new String[] {
-						"SUM(crop_vol) AS totalCrop",
-						"AVG(crop_vol) AS avgCrop"
+						"AVG(crop_vol) AS avgCrop",
+						"SUM(crop_vol) AS totalCrop"
 				};
 				cols = new String[] {
-						"totalCrop",
-						"avgCrop"
+						"avgCrop",
+						"totalCrop"						
 				};
 				break;
 			case "land_parcel":
 				aggregates = new String[] {
-						"SUM(alp_area) AS totalArea",
-						"AVG(alp_area) AS avgArea"
+						"AVG(alp_area) AS avgArea",
+						"SUM(alp_area) AS totalArea"	
 				};
 				cols = new String[] {
-						"totalArea",
-						"avgArea"
+						"avgArea",
+						"totalArea"
 				};
 				break;
 			case "ARCDP":
@@ -96,6 +95,11 @@ public class TheController {
 				break;
 			default:
 		}
+		
+		for(String s : cols ) {
+			System.out.println(s);
+		}
+		System.out.println("TEST");
 		
 		String query = QueryBuilder.buildQuery(table, groupBy, aggregates, whereCols, whereRange,cols);
 		Connection c = DBManager.getInstance().getConnection();
