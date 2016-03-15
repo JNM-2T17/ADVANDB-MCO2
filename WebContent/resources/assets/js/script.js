@@ -368,7 +368,7 @@ $(document).ready(function(){
 				active = dimensions.crops;
 				break;
 			case "landParcel":
-				fact = "landParcel";
+				fact = "land_parcel";
 				active = dimensions.landParcel;
 				break;
 			case "ARCDP":
@@ -430,7 +430,7 @@ $(document).ready(function(){
 				        "Average Crop Volume"
 				        ];
 				break;
-			case "landParcel":
+			case "land_parcel":
 				aggregates = [
 						"totalArea",
 						"avgArea"

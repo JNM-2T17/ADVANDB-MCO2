@@ -72,7 +72,7 @@ public class TheController {
 						"avgCrop"
 				};
 				break;
-			case "landParcel":
+			case "land_parcel":
 				aggregates = new String[] {
 						"SUM(alp_area) AS totalArea",
 						"AVG(alp_area) AS avgArea"
