@@ -469,6 +469,8 @@ $(document).ready(function(){
 			console.log("whereVals");
 			console.log(whereVals);
 			
+			$("#tableResults").html("Loading...");
+			
 			$.ajax({
 				url : "Query",
 				method : "POST",
