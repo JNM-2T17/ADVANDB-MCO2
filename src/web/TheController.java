@@ -47,7 +47,7 @@ public class TheController {
 //		for( String s : groupBy ) {
 //			System.out.println(s);
 //		}
-		for( int i = 0, j = 0; i < whereCols.length; i++, j++ ) {
+		for( int i = 0; i < whereCols.length; i++ ) {
 			whereRange[i] = whereRangeS[i].equals("true");
 //			System.out.print(whereCols[i] + " " + whereRange[i] + " " + whereVals[j]);
 //			if( whereRange[i] ) {
@@ -64,32 +64,36 @@ public class TheController {
 			case "crop":
 				aggregates = new String[] {
 						"AVG(crop_vol) AS avgCrop",
-						"SUM(crop_vol) AS totalCrop"
+						"SUM(crop_vol) AS totalCrop",
+						"COUNT(*) as cropCount"
 				};
 				cols = new String[] {
 						"avgCrop",
-						"totalCrop"						
+						"totalCrop",
+						"cropCount"
 				};
 				break;
 			case "land_parcel":
 				aggregates = new String[] {
 						"AVG(alp_area) AS avgArea",
-						"SUM(alp_area) AS totalArea"	
+						"SUM(alp_area) AS totalArea",
+						"COUNT(*) AS landCount"
 				};
 				cols = new String[] {
 						"avgArea",
-						"totalArea"
+						"totalArea",
+						"landCount"
 				};
 				break;
 			case "ARCDP":
 				aggregates = new String[] {
+						"COUNT(*) AS benefCount",
 						"AVG(age) AS avgAge",
-						"AVG(gradel_calc) AS avgGrade",
-						"AVG(work_ddhrs) AS avgWorkHrs"
+						"AVG(work_ddhrs) AS avgWorkHrs"						
 				};
 				cols = new String[] {
+						"benefCount",
 						"avgAge",
-						"avgGrade",
 						"avgWorkHrs"
 				};
 				break;

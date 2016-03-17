@@ -423,32 +423,36 @@ $(document).ready(function(){
 			case "crop":
 				aggregates = [
 						"totalCrop",
-						"avgCrop"
+						"avgCrop",
+						"cropCount"
 				];
 				cols = [
 				        "Total Crop Volume",
-				        "Average Crop Volume"
+				        "Average Crop Volume",
+				        "Crop Count"
 				        ];
 				break;
 			case "land_parcel":
 				aggregates = [
 						"totalArea",
-						"avgArea"
+						"avgArea",
+						"landCount"
 				];
 				cols = [
 				        "Total Land Area",
-				        "Average Land Area"
+				        "Average Land Area",
+				        "Land Count"
 				        ];
 				break;
 			case "ARCDP":
 				aggregates = [
+						"benefCount",
 						"avgAge",
-						"avgGrade",
 						"avgWorkHrs"
 				];
 				cols = [
+				        "Beneficiary Count",
 				        "Average Age",
-				        "Average Grade",
 				        "Average Work Hours"];
 				break;
 			default:
