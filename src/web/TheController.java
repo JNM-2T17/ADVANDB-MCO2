@@ -100,10 +100,10 @@ public class TheController {
 			default:
 		}
 		
-		for(String s : cols ) {
-			System.out.println(s);
-		}
-		System.out.println("TEST");
+//		for(String s : cols ) {
+//			System.out.println(s);
+//		}
+//		System.out.println("TEST");
 		
 		String query = QueryBuilder.buildQuery(table, groupBy, aggregates, whereCols, whereRange,cols);
 		Connection c = DBManager.getInstance().getConnection();
