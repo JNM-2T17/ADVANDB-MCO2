@@ -384,10 +384,11 @@ $(document).ready(function(){
 		var whereRange = [];
 		var whereVals = [];
 		var error = false;
-		var header = "<tr>"
+		var header = "<thead><tr>"
 		
 		$("#errorMessage").remove();
-
+		$("#tableResults").html("");
+		
 		$(".checkRollDrill").each(function(){
 			if(error == false){
 				var column = $(this).val();
@@ -462,7 +463,7 @@ $(document).ready(function(){
 			header += "<th>" + cols[x] + "</th>";
 		}
 
-		header += "</tr>";
+		header += "</tr></thead>";
 		if(error == false){
 			console.log("groupBy");
 			console.log(groupBy);
@@ -488,7 +489,7 @@ $(document).ready(function(){
 				},
 				success : function(a) {
 					console.log(a);
-					var results = "";
+					var results = "<tbody>";
 					for( x in a) {
 						results += "<tr>";
 						var res = a[x].results;
@@ -500,11 +501,20 @@ $(document).ready(function(){
 						}
 						results += "</tr>";
 					}
+					results += "</tbody>";
 					console.log(header);
 					$("#tableResults").html(header + results);
+					
+					$('#tableResults').tablesorter({
+						widgets        : ['columns'],
+						usNumberFormat : false,
+						sortReset      : false,
+						sortRestart    : true
+					});
 				}
 			});
 		}
+		
 	});
 });
 

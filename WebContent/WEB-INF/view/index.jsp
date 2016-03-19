@@ -11,6 +11,8 @@
 		<script src="<c:url value="resources/assets/js/jquery.min.js" />"></script>
 		<script src="<c:url value="resources/assets/js/jquery-migrate-1.2.1.min.js" />"></script>
 		<script src="<c:url value="/resources/assets/js/script.js" />" type="text/javascript"></script>
+		<script src="<c:url value="/resources/assets/js/jquery.tablesorter.min.js" />"></script>
+		<script src="<c:url value="/resources/assets/js/jquery.tablesorter.widgets.min.js" />"></script>
 	</head>
 
 	<body>
