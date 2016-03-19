@@ -1,5 +1,5 @@
 $(document).ready(function(){
-
+	
 	var dimCount;
 	var checkDimCount = 0;
 
@@ -395,7 +395,7 @@ $(document).ready(function(){
 
 				if($(this).attr("checked")){
 					groupBy.push(column);
-					header += "<th>" + $("#" + column).text() + "</th>";
+					header += "<th>" + $("#" + column).text() + " <i class=\"fa fa-sort\"></i></th>";
 				}
 				else if($("#tableSliceDice tr[data-column=" + column + "] input.checkSliceDice").attr("checked")){
 					whereCols.push(column);
@@ -460,7 +460,7 @@ $(document).ready(function(){
 		}
 		
 		for( x in cols ) {
-			header += "<th>" + cols[x] + "</th>";
+			header += "<th>" + cols[x] + " <i class=\"fa fa-sort\"></i></th>";
 		}
 
 		header += "</tr></thead>";
@@ -505,12 +505,18 @@ $(document).ready(function(){
 					console.log(header);
 					$("#tableResults").html(header + results);
 					
-					$('#tableResults').tablesorter({
-						widgets        : ['columns'],
-						usNumberFormat : false,
-						sortReset      : false,
-						sortRestart    : true
-					});
+					if($('#tableResults').hasClass("tablesorter")){
+						$('#tableResults').trigger("updateAll");
+					}
+					else{
+						$('#tableResults').tablesorter({
+							widgets        : ['columns'],
+							usNumberFormat : false,
+							sortReset      : false,
+							sortRestart    : true
+						});
+					}
+					
 				}
 			});
 		}
@@ -519,6 +525,7 @@ $(document).ready(function(){
 });
 
 function setupFactTable(currTable){
+	
 	dimCount = currTable.length;
 	checkDimCount = 0;
 	$("#headerSliceDice").css("display", "block");
