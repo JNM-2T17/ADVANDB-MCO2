@@ -1,11 +1,12 @@
 -- Load location
 INSERT INTO location(mun, zone, brgy, purok)
-SELECT distinct mun, zone, brgy, purok FROM hpq_hh;
+SELECT distinct mun, zone, brgy, purok 
+FROM hpq_hh;
 
 -- Transform and load hpq_hh to household
 INSERT INTO household
 SELECT H.id, L.id AS location, house_type,roof,wall,water,welec,tenur
-FROM db_hpq.hpq_hh H INNER JOIN location L 
+FROM db_hpq.hpq_hh H LEFT JOIN location L 
 		ON H.mun = L.mun AND H.zone = L.zone AND H.brgy = L.brgy AND H.purok = L.purok
 GROUP BY H.id;
         
