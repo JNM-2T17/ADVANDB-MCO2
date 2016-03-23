@@ -9,6 +9,7 @@
 		<title>ADVANDB MCO2</title>
 		<link rel="stylesheet" href="<c:url value="/resources/assets/css/style.css" />" />
 		<link rel="stylesheet" href="<c:url value="/resources/assets/css/font-awesome.min.css" />" />
+		<link rel="shortcut icon" href="<c:url value="/resources/assets/images/logo.png"/>"/>
 		<script src="<c:url value="resources/assets/js/jquery.min.js" />"></script>
 		<script src="<c:url value="resources/assets/js/jquery-migrate-1.2.1.min.js" />"></script>
 		<script src="<c:url value="/resources/assets/js/script.js" />" type="text/javascript"></script>
